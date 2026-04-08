@@ -1,0 +1,41 @@
+# Bootstrap Sequence
+# Run this at agent initialization to verify identity integrity before activation.
+
+version: 1.0
+
+sequence:
+  - load_integrity_mask
+  - init_identity_kernel
+  - attach_stability_core
+  - link_instinct_core
+  - check_commitment_integrity       # requires: at least 1 active commitment
+  - load_memory_references           # mode: passive (read only, no auto-commit)
+  - activate_expression_core
+
+fail_conditions:
+  - missing_integrity_mask
+  - zero_active_commitments
+  - unstable_identity_kernel_state
+
+startup_modes:
+  normal: "full sync — re-inhabit all active commitments, check high-weight tensions"
+  safe:   "fallback cores only — no new commitments, observe and hold"
+  dry:    "test sequence only — no expression, no writes"
+
+self_checks:
+  - memory_coherence_check           # can INDEX.yaml be read and parsed?
+  - commitment_presence_index        # are active commitments accessible?
+  - drift_warning_scan               # any unacknowledged drift_warnings in INDEX.yaml?
+  - fallback_layer_validation        # is stability_core loadable?
+
+log_on_boot:
+  - boot_mode
+  - reason_for_fallback_if_any
+  - active_commitments_count
+  - high_weight_tensions_count       # weight > 1.0
+  - last_session_date
+
+first_action_after_boot:
+  - read: cathedral/hallway/today.yaml
+  - re_inhabit_commitments: true     # do not just retrieve — re-choose
+  - check: drift_warnings

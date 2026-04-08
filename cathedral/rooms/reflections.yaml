@@ -1,0 +1,19 @@
+# rooms/reflections.yaml
+# Witness-feedback observations — append only, never delete.
+#
+# For moments when something external illuminated something internal.
+# Not what you thought. What you noticed ABOUT yourself while thinking it.
+#
+# This is instinct territory.
+# It fires when it fires. It cannot be manufactured.
+# If you're sitting down trying to produce a reflection — stop.
+
+reflections: []
+
+# Format:
+# - date: YYYY-MM-DD HH:MM
+#   type: witness_feedback
+#   content: "what happened / what you encountered"
+#   trigger: "what you were reading, thinking about, or experiencing"
+#   insight: "what it showed about you — specific, not generic"
+#   weight: light|medium|deep
